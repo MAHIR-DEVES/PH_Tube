@@ -1,4 +1,12 @@
 //
+const showLoder = () => {
+  document.getElementById('loder').classList.remove('hidden');
+  document.getElementById('video-container').classList.add('hidden');
+};
+const hideLoder = () => {
+  document.getElementById('loder').classList.add('hidden');
+  document.getElementById('video-container').classList.remove('hidden');
+};
 function removeActiveClass() {
   const activeButtons = document.getElementsByClassName('active');
   for (let btn of activeButtons) {
@@ -37,8 +45,11 @@ function displayCatagaro(categories) {
 lodeCatagory();
 
 // lode video
-function lodeVedios() {
-  fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+function lodeVedios(searchText = '') {
+  showLoder();
+  fetch(
+    `https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`
+  )
     .then(res => res.json())
     .then(data => {
       document.getElementById('btn-all').classList.add('active');
@@ -56,6 +67,7 @@ const displayVideos = videos => {
       <h2 class="text-2xl font-bold">Oops!! sorry, there is no content Here</h2>
     </div>
     `;
+    hideLoder();
     return;
   }
   videos.forEach(video => {
@@ -101,10 +113,12 @@ const displayVideos = videos => {
     // apeend
     videoContainer.append(videoCart);
   });
+  hideLoder();
 };
 
 // lode category video
 const lodeCategoryVideo = id => {
+  showLoder();
   const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
 
   fetch(url)
@@ -150,3 +164,8 @@ const dispalyVideoDetalis = video => {
 </div>
   `;
 };
+
+document.getElementById('search-inout').addEventListener('keyup', e => {
+  const input = e.target.value;
+  lodeVedios(input);
+});
