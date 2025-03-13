@@ -63,7 +63,9 @@ const displayVideos = videos => {
     videoCart.innerHTML = `
      <div class="card bg-base-100 shadow-sm">
       <figure class="relative">
-        <img class='w-full h-[250px] object-cover' src="${video.thumbnail}" alt="Shoes" />
+        <img class='w-full h-[250px] object-cover' src="${
+          video.thumbnail
+        }" alt="Shoes" />
         <span class="absolute bottom-2 right-2 bg-black text-white  px-3 rounded-xl">3hrs 56 min ago</span>
       </figure>
       <div class=" flex gap-2 px-0 py-6">
@@ -71,19 +73,28 @@ const displayVideos = videos => {
           <div class="avatar">
             <div class="ring-primary ring-offset-base-100 w-7 rounded-full ring ring-offset-2">
               <img src="${video.authors[0].profile_picture}" />
+
             </div>
           </div>
         </div>
         <div class="intro">
           <h2>${video.title}</h2>
-          <p class="text-gray-400 flex gap-2 items-center">${video.authors[0].profile_name}<img class=" w-5 h-5"
-              src="./asset/icons8-verified-badge-48.png" alt="">
+          <p class="text-gray-400 flex gap-2 items-center">
+          ${video.authors[0].profile_name}
+          ${
+            video.authors[0].verified == true
+              ? `<img class=" w-5 h-5"
+              src="./asset/icons8-verified-badge-48.png" alt="">`
+              : ``
+          }
           </p>
           <p class="text-gray-400">${video.others.views} views</p>
         </div>
       </div>
     </div>
-    <button onclick="lodeVideoDetails('${video.video_id}')" class="btn btn-block my-5"> Show Details</button>
+    <button onclick="lodeVideoDetails('${
+      video.video_id
+    }')" class="btn btn-block my-5"> Show Details</button>
     </div>
     
     `;
