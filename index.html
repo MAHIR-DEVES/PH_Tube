@@ -20,6 +20,11 @@
     body {
       font-family: "Inter", sans-serif;
     }
+
+    .active {
+      background: red;
+      color: white;
+    }
   </style>
 </head>
 
@@ -39,7 +44,8 @@
   </header>
   <nav id="catagory-container" class="flex justify-center py-3 gap-5">
     <div>
-      <button class="btn btn-sm  bg-red-500  text-white">All</button>
+
+      <button id="btn-all" onclick="lodeVedios()" class="btn btn-sm ">All</button>
     </div>
 
 
@@ -47,9 +53,29 @@
 
   <section class="w-11/12 mx-auto grid grid-cols-2 md:grid-cols-4 gap-3" id="video-container">
 
+    <div class="col-span-full text-center flex flex-col justify-center items-center py-45">
+      <img class="h-30 w-30" src="./asset/Icon.png" alt="">
+      <h2 class="text-2xl font-bold">Oops!! sorry, there is no content Here</h2>
+    </div>
+
   </section>
 
 
+  <!-- Open the modal using ID.showModal() method -->
+  <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+  <dialog id="video_details" class="modal">
+    <div class="modal-box">
+      <div id="detiels-container">
+
+      </div>
+      <div class="modal-action">
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
 
   <script src="./scrpit/index.js"></script>
 </body>
